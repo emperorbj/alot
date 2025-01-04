@@ -1,6 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -23,7 +24,12 @@ type ResetPasswordFormValues = {
 
 export default function ResetPasswordPage() {
   const searchParams = useSearchParams();
-  const token = searchParams.get('token'); // Extract token from URL
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const tokenFromParams = searchParams.get('token');
+    setToken(tokenFromParams);
+  }, [searchParams]);
 
   const {
     register,
@@ -41,6 +47,15 @@ export default function ResetPasswordPage() {
       console.error('Error resetting password:', error);
     }
   };
+
+  // Fallback if token is missing
+  if (token === null) {
+    return <p>Loading...</p>;
+  }
+
+  if (!token) {
+    return <p>Invalid or missing token.</p>;
+  }
 
   return (
     <FormLayout
