@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import InputField from '@/components/ui/InputField';
 import Button from '@/components/ui/Button';
 import FormLayout from '@/components/ui/FormLayout';
+import Navbar from '@/components/ui/Navbar';
 
 const resetPasswordSchema = yup.object().shape({
   password: yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
@@ -48,20 +49,22 @@ export default function ResetPasswordPage() {
     }
   };
 
-  // Fallback if token is missing
-  if (token === null) {
-    return <p>Loading...</p>;
-  }
+  // // Fallback if token is missing
+  // if (token === null) {
+  //   return <p>Loading...</p>;
+  // }
 
-  if (!token) {
-    return <p>Invalid or missing token.</p>;
-  }
+  // if (!token) {
+  //   return <p>Invalid or missing token.</p>;
+  // }
 
   return (
+    <><Navbar/>
     <FormLayout
       title="Reset Your Password"
       description="Enter a new password below to reset your account password."
     >
+      
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <InputField
           label="New Password"
@@ -80,5 +83,6 @@ export default function ResetPasswordPage() {
         </Button>
       </form>
     </FormLayout>
+    </>
   );
 }

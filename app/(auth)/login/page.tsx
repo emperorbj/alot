@@ -6,6 +6,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import InputField from '@/components/ui/InputField';
 import Button from '@/components/ui/Button';
 import FormLayout from '@/components/ui/FormLayout';
+import Navbar from '@/components/ui/Navbar';
+import Link from 'next/link';
 
 const signInSchema = yup.object().shape({
   email: yup.string().email('Invalid email address').required('Email is required'),
@@ -31,9 +33,10 @@ export default function SignInPage() {
   };
 
   return (
+    <><Navbar/>
     <FormLayout
-      title="Sign In to Your Account"
-      description="Enter your credentials to access your account."
+      title="Sign In"
+      description="Please sign into your account."
     >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <InputField
@@ -48,8 +51,17 @@ export default function SignInPage() {
           {...register('password')}
           error={errors.password?.message}
         />
-        <Button type="submit">Sign In</Button>
+      <Link href="/dashboard">
+        <Button type="submit" className='w-full'>Sign In</Button>
+      </Link>
+        <div className='flex gap-5'>
+          <p>Are you a student?</p>
+          <p>Sign in</p>
+        </div>
       </form>
     </FormLayout>
+    </>
   );
 }
+
+

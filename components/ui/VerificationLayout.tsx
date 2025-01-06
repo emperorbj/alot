@@ -8,11 +8,11 @@ interface FormLayoutProps {
   children: React.ReactNode;
 }
 
-const FormLayout: React.FC<FormLayoutProps> = ({ title, description, children }) => {
+const VerifyLayout: React.FC<FormLayoutProps> = ({ title, description, children }) => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#EEEFF8]">
       
-      <div className="w-full max-w-md bg-[#EEEFF8] shadow-md rounded-lg p-6">
+      <div className="w-full max-w-md bg-[#EEEFF8] border border-[#3D6FAB] rounded-lg p-6">
         <h1 className="text-2xl font-bold text-center mb-4">{title}</h1>
         <p className="text-sm text-gray-600 text-center mb-6">{description}</p>
         {children}
@@ -21,4 +21,4 @@ const FormLayout: React.FC<FormLayoutProps> = ({ title, description, children })
   );
 };
 
-export default FormLayout;
+export default VerifyLayout;
